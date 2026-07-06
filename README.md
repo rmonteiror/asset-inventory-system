@@ -1,4 +1,4 @@
-+# Asset Inventory System
+# Asset Inventory System
 
 A modern **IT Asset Inventory Management System** built with **FastAPI**, **PostgreSQL**, **SQLAlchemy Async**, and **Docker**.
 
