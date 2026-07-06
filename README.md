@@ -8,14 +8,27 @@ This project was developed to demonstrate backend architecture, REST API develop
 
 # Screenshots
 
-![Swagger](./screenshots/swagger-home.png)
+## Swagger Documentation
 
-![Users](./screenshots/users-endpoints.png)
+![Swagger](screenshots/swagger-home.png)
 
-![VSCode](./screenshots/vscode-project.png)
-
-![Database](./screenshots/pgadmin-database.png)
 ---
+
+## User Endpoints
+
+![Users](screenshots/users-endpoints.png)
+
+---
+
+## Project Structure
+
+![VS Code](screenshots/vscode-project.png)
+
+---
+
+## PostgreSQL Database
+
+![PostgreSQL](screenshots/pgadmin-database.png)
 
 # Features
 
