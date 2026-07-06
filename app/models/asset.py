@@ -3,9 +3,11 @@ from sqlalchemy import (
     Integer,
     String,
     Date,
-    DateTime
+    DateTime,
+    ForeignKey
 )
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from app.database.base import Base
 
@@ -67,6 +69,12 @@ class Asset(Base):
         nullable=True
     )
 
+    assigned_user_id = Column(
+        Integer,
+        ForeignKey("users.id"),
+        nullable=True
+    )
+
     notes = Column(
         String(1000),
         nullable=True
@@ -81,4 +89,21 @@ class Asset(Base):
         DateTime(timezone=True),
         server_default=func.now(),
         onupdate=func.now()
+    )
+
+    assigned_user = relationship(
+        "User",
+        back_populates="assets"
+    )
+
+    licenses = relationship(
+        "License",
+        back_populates="asset",
+        cascade="all, delete-orphan"
+    )
+
+    maintenances = relationship(
+        "Maintenance",
+        back_populates="asset",
+        cascade="all, delete-orphan"
     )

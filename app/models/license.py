@@ -2,7 +2,9 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
-    DateTime
+    Date,
+    DateTime,
+    ForeignKey
 )
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
@@ -10,8 +12,8 @@ from sqlalchemy.orm import relationship
 from app.database.base import Base
 
 
-class User(Base):
-    __tablename__ = "users"
+class License(Base):
+    __tablename__ = "licenses"
 
     id = Column(
         Integer,
@@ -19,36 +21,42 @@ class User(Base):
         index=True
     )
 
-    full_name = Column(
+    software_name = Column(
         String(255),
         nullable=False
     )
 
-    email = Column(
+    vendor = Column(
+        String(255),
+        nullable=False
+    )
+
+    license_key = Column(
         String(255),
         unique=True,
         nullable=False
     )
 
-    password_hash = Column(
-        String(255),
-        nullable=False
+    version = Column(
+        String(100),
+        nullable=True
     )
 
-    role = Column(
+    expiration_date = Column(
+        Date,
+        nullable=True
+    )
+
+    status = Column(
         String(50),
         nullable=False,
-        default="USER"
+        default="ACTIVE"
     )
 
-    department = Column(
-        String(100),
-        nullable=True
-    )
-
-    position = Column(
-        String(100),
-        nullable=True
+    asset_id = Column(
+        Integer,
+        ForeignKey("assets.id"),
+        nullable=False
     )
 
     created_at = Column(
@@ -62,7 +70,7 @@ class User(Base):
         onupdate=func.now()
     )
 
-    assets = relationship(
+    asset = relationship(
         "Asset",
-        back_populates="assigned_user"
+        back_populates="licenses"
     )

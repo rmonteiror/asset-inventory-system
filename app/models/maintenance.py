@@ -2,16 +2,19 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
-    DateTime
+    Date,
+    DateTime,
+    ForeignKey,
+    Float
 )
-from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 from app.database.base import Base
 
 
-class User(Base):
-    __tablename__ = "users"
+class Maintenance(Base):
+    __tablename__ = "maintenances"
 
     id = Column(
         Integer,
@@ -19,35 +22,50 @@ class User(Base):
         index=True
     )
 
-    full_name = Column(
+    asset_id = Column(
+        Integer,
+        ForeignKey("assets.id"),
+        nullable=False
+    )
+
+    title = Column(
         String(255),
         nullable=False
     )
 
-    email = Column(
-        String(255),
-        unique=True,
-        nullable=False
-    )
-
-    password_hash = Column(
-        String(255),
-        nullable=False
-    )
-
-    role = Column(
-        String(50),
-        nullable=False,
-        default="USER"
-    )
-
-    department = Column(
-        String(100),
+    description = Column(
+        String(1000),
         nullable=True
     )
 
-    position = Column(
-        String(100),
+    maintenance_type = Column(
+        String(50),
+        nullable=False
+    )
+
+    status = Column(
+        String(50),
+        nullable=False,
+        default="OPEN"
+    )
+
+    technician = Column(
+        String(255),
+        nullable=True
+    )
+
+    cost = Column(
+        Float,
+        nullable=True
+    )
+
+    start_date = Column(
+        Date,
+        nullable=False
+    )
+
+    end_date = Column(
+        Date,
         nullable=True
     )
 
@@ -62,7 +80,7 @@ class User(Base):
         onupdate=func.now()
     )
 
-    assets = relationship(
+    asset = relationship(
         "Asset",
-        back_populates="assigned_user"
+        back_populates="maintenances"
     )

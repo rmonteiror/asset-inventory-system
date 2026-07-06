@@ -1,0 +1,32 @@
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict
+
+
+class UserBase(BaseModel):
+    full_name: str
+    email: str
+    department: str | None = None
+    position: str | None = None
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class UserUpdate(BaseModel):
+    full_name: str | None = None
+    email: str | None = None
+    password: str | None = None
+    department: str | None = None
+    position: str | None = None
+
+
+class UserRead(UserBase):
+    id: int
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = ConfigDict(
+        from_attributes=True
+    )

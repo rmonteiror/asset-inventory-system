@@ -4,6 +4,9 @@ from app.api.routes import router
 from app.database.connection import engine
 from app.database.base import Base
 
+# IMPORTANTE: carrega todos os models
+import app.models
+
 app = FastAPI(
     title="Asset Inventory System"
 )
