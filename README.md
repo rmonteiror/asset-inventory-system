@@ -1,4 +1,4 @@
-# Asset Inventory System
++# Asset Inventory System
 
 A modern **IT Asset Inventory Management System** built with **FastAPI**, **PostgreSQL**, **SQLAlchemy Async**, and **Docker**.
 
@@ -8,9 +8,9 @@ This project was developed to demonstrate backend architecture, REST API develop
 
 # Screenshots
 
-## Swagger Documentation
+# Test
 
-![Swagger Documentation](screenshots/swagger-home.png)
+![](screenshots/swagger-home.png)
 
 ---
 
